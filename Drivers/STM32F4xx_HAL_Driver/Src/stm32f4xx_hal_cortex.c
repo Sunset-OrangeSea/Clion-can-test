@@ -243,7 +243,6 @@ uint32_t HAL_SYSTICK_Config(uint32_t TicksNumb) {
   */
 
 #if (__MPU_PRESENT == 1U)
-
 /**
   * @brief  Disables the MPU
   * @retval None
@@ -322,7 +321,6 @@ void HAL_MPU_ConfigRegion(MPU_Region_InitTypeDef *MPU_Init) {
         MPU->RASR = 0x00U;
     }
 }
-
 #endif /* __MPU_PRESENT */
 
 /**

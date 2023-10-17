@@ -645,8 +645,7 @@ typedef struct __DMA_HandleTypeDef {
   * @brief   Initialization and de-initialization functions 
   * @{
   */
-HAL_StatusTypeDef HAL_DMA_Init(DMA_HandleTypeDef *hdma);
-
+HAL_StatusTypeDef HAL_DMA_Init(DMA_HandleTypeDef *hdma); 
 HAL_StatusTypeDef HAL_DMA_DeInit(DMA_HandleTypeDef *hdma);
 /**
   * @}
@@ -660,21 +659,17 @@ HAL_StatusTypeDef HAL_DMA_Start(DMA_HandleTypeDef *hdma, uint32_t SrcAddress, ui
 
 HAL_StatusTypeDef
 HAL_DMA_Start_IT(DMA_HandleTypeDef *hdma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
-
 HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma);
-
 HAL_StatusTypeDef HAL_DMA_Abort_IT(DMA_HandleTypeDef *hdma);
 
 HAL_StatusTypeDef
 HAL_DMA_PollForTransfer(DMA_HandleTypeDef *hdma, HAL_DMA_LevelCompleteTypeDef CompleteLevel, uint32_t Timeout);
 
 void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma);
-
 HAL_StatusTypeDef HAL_DMA_CleanCallbacks(DMA_HandleTypeDef *hdma);
 
 HAL_StatusTypeDef HAL_DMA_RegisterCallback(DMA_HandleTypeDef *hdma, HAL_DMA_CallbackIDTypeDef CallbackID,
                                            void (*pCallback)(DMA_HandleTypeDef *_hdma));
-
 HAL_StatusTypeDef HAL_DMA_UnRegisterCallback(DMA_HandleTypeDef *hdma, HAL_DMA_CallbackIDTypeDef CallbackID);
 
 /**

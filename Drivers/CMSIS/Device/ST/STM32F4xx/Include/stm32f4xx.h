@@ -155,7 +155,6 @@ extern "C" {
 #elif defined(STM32F446xx)
 
 #include "stm32f446xx.h"
-
 #elif defined(STM32F469xx)
 #include "stm32f469xx.h"
 #elif defined(STM32F479xx)
@@ -285,7 +284,6 @@ typedef enum {
 #if defined (USE_HAL_DRIVER)
 
 #include "stm32f4xx_hal.h"
-
 #endif /* USE_HAL_DRIVER */
 
 #ifdef __cplusplus

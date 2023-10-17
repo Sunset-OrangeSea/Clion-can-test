@@ -102,6 +102,7 @@ extern "C" {
 #endif /* SYSCFG_PMC_MII_RMII_SEL */
 
 
+
 #if defined(SYSCFG_MEMRMP_UFB_MODE)
 /** @defgroup SYSTEM_LL_EC_BANKMODE SYSCFG BANK MODE
   * @{
@@ -181,9 +182,9 @@ extern "C" {
   */
 #if defined(SYSCFG_CFGR2_LOCKUP_LOCK)
 #define LL_SYSCFG_TIMBREAK_LOCKUP          SYSCFG_CFGR2_LOCKUP_LOCK   /*!< Enables and locks the LOCKUP output of CortexM4 
-with Break Input of TIM1/8                                    */
-#define LL_SYSCFG_TIMBREAK_PVD             SYSCFG_CFGR2_PVD_LOCK      /*!< Enables and locks the PVD connection with TIM1/8 Break Input
-and also the PVDE and PLS bits of the Power Control Interface  */
+                                                                      with Break Input of TIM1/8                                    */
+#define LL_SYSCFG_TIMBREAK_PVD             SYSCFG_CFGR2_PVD_LOCK      /*!< Enables and locks the PVD connection with TIM1/8 Break Input 
+                                                                      and also the PVDE and PLS bits of the Power Control Interface  */
 #endif /* SYSCFG_CFGR2_CLL */
 /**
   * @}
@@ -587,7 +588,6 @@ __STATIC_INLINE void LL_SYSCFG_SetFlashBankMode(uint32_t Bank) {
 __STATIC_INLINE uint32_t LL_SYSCFG_GetFlashBankMode(void) {
     return (uint32_t) (READ_BIT(SYSCFG->MEMRMP, SYSCFG_MEMRMP_UFB_MODE));
 }
-
 #endif /* SYSCFG_MEMRMP_UFB_MODE */
 
 #if defined(SYSCFG_CFGR_FMPI2C1_SCL)
@@ -618,7 +618,6 @@ __STATIC_INLINE void LL_SYSCFG_EnableFastModePlus(uint32_t ConfigFastModePlus) {
 __STATIC_INLINE void LL_SYSCFG_DisableFastModePlus(uint32_t ConfigFastModePlus) {
     CLEAR_BIT(SYSCFG->CFGR, ConfigFastModePlus);
 }
-
 #endif /* SYSCFG_CFGR_FMPI2C1_SCL */
 
 /**

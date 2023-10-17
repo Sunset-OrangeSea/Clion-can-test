@@ -13,14 +13,14 @@
   * the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
   ******************************************************************************
-  */
+  */ 
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32F4xx_HAL_PWR_H
 #define __STM32F4xx_HAL_PWR_H
 
 #ifdef __cplusplus
-extern "C" {
+ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
@@ -32,24 +32,25 @@ extern "C" {
 
 /** @addtogroup PWR
   * @{
-  */
+  */ 
 
 /* Exported types ------------------------------------------------------------*/
 
 /** @defgroup PWR_Exported_Types PWR Exported Types
   * @{
   */
-
+   
 /**
   * @brief  PWR PVD configuration structure definition
   */
-typedef struct {
-    uint32_t PVDLevel;   /*!< PVDLevel: Specifies the PVD detection level.
+typedef struct
+{
+  uint32_t PVDLevel;   /*!< PVDLevel: Specifies the PVD detection level.
                             This parameter can be a value of @ref PWR_PVD_detection_level */
 
-    uint32_t Mode;      /*!< Mode: Specifies the operating mode for the selected pins.
+  uint32_t Mode;      /*!< Mode: Specifies the operating mode for the selected pins.
                            This parameter can be a value of @ref PWR_PVD_Mode */
-} PWR_PVDTypeDef;
+}PWR_PVDTypeDef;
 
 /**
   * @}
@@ -59,7 +60,7 @@ typedef struct {
 /** @defgroup PWR_Exported_Constants PWR Exported Constants
   * @{
   */
-
+  
 /** @defgroup PWR_WakeUp_Pins PWR WakeUp Pins
   * @{
   */
@@ -70,7 +71,7 @@ typedef struct {
 
 /** @defgroup PWR_PVD_detection_level PWR PVD detection level
   * @{
-  */
+  */ 
 #define PWR_PVDLEVEL_0                  PWR_CR_PLS_LEV0
 #define PWR_PVDLEVEL_1                  PWR_CR_PLS_LEV1
 #define PWR_PVDLEVEL_2                  PWR_CR_PLS_LEV2
@@ -82,8 +83,8 @@ typedef struct {
                                                           (Compare internally to VREFINT) */
 /**
   * @}
-  */
-
+  */   
+ 
 /** @defgroup PWR_PVD_Mode PWR PVD Mode
   * @{
   */
@@ -107,7 +108,7 @@ typedef struct {
 /**
   * @}
   */
-
+    
 /** @defgroup PWR_SLEEP_mode_entry PWR SLEEP mode entry
   * @{
   */
@@ -140,8 +141,8 @@ typedef struct {
 
 /**
   * @}
-  */
-
+  */ 
+  
 /* Exported macro ------------------------------------------------------------*/
 /** @defgroup PWR_Exported_Macro PWR Exported Macro
   * @{
@@ -243,7 +244,7 @@ typedef struct {
   */
 #define __HAL_PWR_PVD_EXTI_DISABLE_RISING_FALLING_EDGE()  do{__HAL_PWR_PVD_EXTI_DISABLE_RISING_EDGE();\
                                                              __HAL_PWR_PVD_EXTI_DISABLE_FALLING_EDGE();\
-                                                            }while(0U)
+                                                            }while(0U) 
 
 /**
   * @brief checks whether the specified PVD Exti interrupt flag is set or not.
@@ -274,15 +275,13 @@ typedef struct {
 /** @addtogroup PWR_Exported_Functions PWR Exported Functions
   * @{
   */
-
+  
 /** @addtogroup PWR_Exported_Functions_Group1 Initialization and de-initialization functions 
   * @{
   */
 /* Initialization and de-initialization functions *****************************/
 void HAL_PWR_DeInit(void);
-
 void HAL_PWR_EnableBkUpAccess(void);
-
 void HAL_PWR_DisableBkUpAccess(void);
 /**
   * @}
@@ -294,35 +293,26 @@ void HAL_PWR_DisableBkUpAccess(void);
 /* Peripheral Control functions  **********************************************/
 /* PVD configuration */
 void HAL_PWR_ConfigPVD(PWR_PVDTypeDef *sConfigPVD);
-
 void HAL_PWR_EnablePVD(void);
-
 void HAL_PWR_DisablePVD(void);
 
 /* WakeUp pins configuration */
 void HAL_PWR_EnableWakeUpPin(uint32_t WakeUpPinx);
-
 void HAL_PWR_DisableWakeUpPin(uint32_t WakeUpPinx);
 
 /* Low Power modes entry */
 void HAL_PWR_EnterSTOPMode(uint32_t Regulator, uint8_t STOPEntry);
-
 void HAL_PWR_EnterSLEEPMode(uint32_t Regulator, uint8_t SLEEPEntry);
-
 void HAL_PWR_EnterSTANDBYMode(void);
 
 /* Power PVD IRQ Handler */
 void HAL_PWR_PVD_IRQHandler(void);
-
 void HAL_PWR_PVDCallback(void);
 
 /* Cortex System Control functions  *******************************************/
 void HAL_PWR_EnableSleepOnExit(void);
-
 void HAL_PWR_DisableSleepOnExit(void);
-
 void HAL_PWR_EnableSEVOnPend(void);
-
 void HAL_PWR_DisableSEVOnPend(void);
 /**
   * @}
@@ -423,12 +413,12 @@ void HAL_PWR_DisableSEVOnPend(void);
 
 /**
   * @}
-  */
+  */ 
 
 /**
   * @}
   */
-
+  
 #ifdef __cplusplus
 }
 #endif

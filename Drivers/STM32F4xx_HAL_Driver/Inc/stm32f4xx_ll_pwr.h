@@ -226,7 +226,6 @@ __STATIC_INLINE void LL_PWR_DisableFLASHInterfaceSTOP(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsEnabledFLASHInterfaceSTOP(void) {
     return (READ_BIT(PWR->CR, PWR_CR_FISSR) == (PWR_CR_FISSR));
 }
-
 #endif /* PWR_CR_FISSR */
 
 #if defined(PWR_CR_FMSSR)
@@ -257,7 +256,6 @@ __STATIC_INLINE void LL_PWR_DisableFLASHMemorySTOP(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsEnabledFLASHMemorySTOP(void) {
     return (READ_BIT(PWR->CR, PWR_CR_FMSSR) == (PWR_CR_FMSSR));
 }
-
 #endif /* PWR_CR_FMSSR */
 #if defined(PWR_CR_UDEN)
 /**
@@ -294,7 +292,6 @@ __STATIC_INLINE void LL_PWR_DisableUnderDriveMode(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsEnabledUnderDriveMode(void) {
     return (READ_BIT(PWR->CR, PWR_CR_UDEN) == (PWR_CR_UDEN));
 }
-
 #endif /* PWR_CR_UDEN */
 
 #if defined(PWR_CR_ODSWEN)
@@ -324,7 +321,6 @@ __STATIC_INLINE void LL_PWR_DisableOverDriveSwitching(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsEnabledOverDriveSwitching(void) {
     return (READ_BIT(PWR->CR, PWR_CR_ODSWEN) == (PWR_CR_ODSWEN));
 }
-
 #endif /* PWR_CR_ODSWEN */
 #if defined(PWR_CR_ODEN)
 /**
@@ -353,7 +349,6 @@ __STATIC_INLINE void LL_PWR_DisableOverDriveMode(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsEnabledOverDriveMode(void) {
     return (READ_BIT(PWR->CR, PWR_CR_ODEN) == (PWR_CR_ODEN));
 }
-
 #endif /* PWR_CR_ODEN */
 #if defined(PWR_CR_MRUDS)
 /**
@@ -382,7 +377,6 @@ __STATIC_INLINE void LL_PWR_DisableMainRegulatorDeepSleepUDMode(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsEnabledMainRegulatorDeepSleepUDMode(void) {
     return (READ_BIT(PWR->CR, PWR_CR_MRUDS) == (PWR_CR_MRUDS));
 }
-
 #endif /* PWR_CR_MRUDS */
 
 #if defined(PWR_CR_LPUDS)
@@ -412,7 +406,6 @@ __STATIC_INLINE void LL_PWR_DisableLowPowerRegulatorDeepSleepUDMode(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsEnabledLowPowerRegulatorDeepSleepUDMode(void) {
     return (READ_BIT(PWR->CR, PWR_CR_LPUDS) == (PWR_CR_LPUDS));
 }
-
 #endif /* PWR_CR_LPUDS */
 
 #if defined(PWR_CR_MRLVDS)
@@ -442,7 +435,6 @@ __STATIC_INLINE void LL_PWR_DisableMainRegulatorLowVoltageMode(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsEnabledMainRegulatorLowVoltageMode(void) {
     return (READ_BIT(PWR->CR, PWR_CR_MRLVDS) == (PWR_CR_MRLVDS));
 }
-
 #endif /* PWR_CR_MRLVDS */
 
 #if defined(PWR_CR_LPLVDS)
@@ -472,7 +464,6 @@ __STATIC_INLINE void LL_PWR_DisableLowPowerRegulatorLowVoltageMode(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsEnabledLowPowerRegulatorLowVoltageMode(void) {
     return (READ_BIT(PWR->CR, PWR_CR_LPLVDS) == (PWR_CR_LPLVDS));
 }
-
 #endif /* PWR_CR_LPLVDS */
 /**
   * @brief  Set the main internal Regulator output voltage
@@ -838,7 +829,6 @@ __STATIC_INLINE uint32_t LL_PWR_IsActiveFlag_PVDO(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsActiveFlag_VOS(void) {
     return (READ_BIT(PWR->CSR, LL_PWR_CSR_VOS) == (LL_PWR_CSR_VOS));
 }
-
 #if defined(PWR_CR_ODEN)
 /**
   * @brief  Indicate whether the Over-Drive mode is ready or not
@@ -848,7 +838,6 @@ __STATIC_INLINE uint32_t LL_PWR_IsActiveFlag_VOS(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsActiveFlag_OD(void) {
     return (READ_BIT(PWR->CSR, PWR_CSR_ODRDY) == (PWR_CSR_ODRDY));
 }
-
 #endif /* PWR_CR_ODEN */
 
 #if defined(PWR_CR_ODSWEN)
@@ -860,7 +849,6 @@ __STATIC_INLINE uint32_t LL_PWR_IsActiveFlag_OD(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsActiveFlag_ODSW(void) {
     return (READ_BIT(PWR->CSR, PWR_CSR_ODSWRDY) == (PWR_CSR_ODSWRDY));
 }
-
 #endif /* PWR_CR_ODSWEN */
 
 #if defined(PWR_CR_UDEN)
@@ -872,7 +860,6 @@ __STATIC_INLINE uint32_t LL_PWR_IsActiveFlag_ODSW(void) {
 __STATIC_INLINE uint32_t LL_PWR_IsActiveFlag_UD(void) {
     return (READ_BIT(PWR->CSR, PWR_CSR_UDRDY) == (PWR_CSR_UDRDY));
 }
-
 #endif /* PWR_CR_UDEN */
 /**
   * @brief  Clear Standby Flag
@@ -891,7 +878,6 @@ __STATIC_INLINE void LL_PWR_ClearFlag_SB(void) {
 __STATIC_INLINE void LL_PWR_ClearFlag_WU(void) {
     SET_BIT(PWR->CR, PWR_CR_CWUF);
 }
-
 #if defined(PWR_CSR_UDRDY)
 /**
   * @brief  Clear Under-Drive ready Flag
@@ -901,7 +887,6 @@ __STATIC_INLINE void LL_PWR_ClearFlag_WU(void) {
 __STATIC_INLINE void LL_PWR_ClearFlag_UD(void) {
     WRITE_REG(PWR->CSR, PWR_CSR_UDRDY);
 }
-
 #endif /* PWR_CSR_UDRDY */
 
 /**

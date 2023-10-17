@@ -50,11 +50,8 @@ TIM_HandleTypeDef htim8;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-
 static void MX_GPIO_Init(void);
-
 static void MX_CAN1_Init(void);
-
 static void MX_TIM8_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -95,7 +92,7 @@ int main(void) {
     MX_CAN1_Init();
     MX_TIM8_Init();
     /* USER CODE BEGIN 2 */
-
+    HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
     /* USER CODE END 2 */
 
     /* Infinite loop */
@@ -104,18 +101,26 @@ int main(void) {
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
-        HAL_Delay(500);
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
-        HAL_Delay(500);
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
-        HAL_Delay(200);
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
-        HAL_Delay(200);
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
-        HAL_Delay(200);
-        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
-        HAL_Delay(200);
+
+        int dt1 = 500;/* 定义延时变量dt1=1000ms */
+
+        __HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 500);/*初始位置 0 */
+        HAL_Delay(dt1);
+        __HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 2500);/*最终位置 180 */
+        HAL_Delay(dt1);
+
+//        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
+//        HAL_Delay(500);
+//        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
+//        HAL_Delay(500);
+//        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
+//        HAL_Delay(200);
+//        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
+//        HAL_Delay(200);
+//        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
+//        HAL_Delay(300);
+//        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
+//        HAL_Delay(300);
     }
     /* USER CODE END 3 */
 }
@@ -209,6 +214,7 @@ static void MX_TIM8_Init(void) {
 
     /* USER CODE END TIM8_Init 0 */
 
+    TIM_ClockConfigTypeDef sClockSourceConfig = {0};
     TIM_MasterConfigTypeDef sMasterConfig = {0};
     TIM_OC_InitTypeDef sConfigOC = {0};
     TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
@@ -217,12 +223,19 @@ static void MX_TIM8_Init(void) {
 
     /* USER CODE END TIM8_Init 1 */
     htim8.Instance = TIM8;
-    htim8.Init.Prescaler = 0;
+    htim8.Init.Prescaler = 167;
     htim8.Init.CounterMode = TIM_COUNTERMODE_UP;
-    htim8.Init.Period = 65535;
+    htim8.Init.Period = 19999;
     htim8.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
     htim8.Init.RepetitionCounter = 0;
     htim8.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+    if (HAL_TIM_Base_Init(&htim8) != HAL_OK) {
+        Error_Handler();
+    }
+    sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+    if (HAL_TIM_ConfigClockSource(&htim8, &sClockSourceConfig) != HAL_OK) {
+        Error_Handler();
+    }
     if (HAL_TIM_PWM_Init(&htim8) != HAL_OK) {
         Error_Handler();
     }
@@ -232,7 +245,7 @@ static void MX_TIM8_Init(void) {
         Error_Handler();
     }
     sConfigOC.OCMode = TIM_OCMODE_PWM1;
-    sConfigOC.Pulse = 4000;
+    sConfigOC.Pulse = 0;
     sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
     sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
     sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -241,7 +254,6 @@ static void MX_TIM8_Init(void) {
     if (HAL_TIM_PWM_ConfigChannel(&htim8, &sConfigOC, TIM_CHANNEL_1) != HAL_OK) {
         Error_Handler();
     }
-    sConfigOC.Pulse = 0;
     if (HAL_TIM_PWM_ConfigChannel(&htim8, &sConfigOC, TIM_CHANNEL_2) != HAL_OK) {
         Error_Handler();
     }

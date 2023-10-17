@@ -274,31 +274,26 @@ extern "C" {
 #ifdef HAL_RCC_MODULE_ENABLED
 
 #include "stm32f4xx_hal_rcc.h"
-
 #endif /* HAL_RCC_MODULE_ENABLED */
 
 #ifdef HAL_GPIO_MODULE_ENABLED
 
 #include "stm32f4xx_hal_gpio.h"
-
 #endif /* HAL_GPIO_MODULE_ENABLED */
 
 #ifdef HAL_EXTI_MODULE_ENABLED
 
 #include "stm32f4xx_hal_exti.h"
-
 #endif /* HAL_EXTI_MODULE_ENABLED */
 
 #ifdef HAL_DMA_MODULE_ENABLED
 
 #include "stm32f4xx_hal_dma.h"
-
 #endif /* HAL_DMA_MODULE_ENABLED */
 
 #ifdef HAL_CORTEX_MODULE_ENABLED
 
 #include "stm32f4xx_hal_cortex.h"
-
 #endif /* HAL_CORTEX_MODULE_ENABLED */
 
 #ifdef HAL_ADC_MODULE_ENABLED
@@ -308,7 +303,6 @@ extern "C" {
 #ifdef HAL_CAN_MODULE_ENABLED
 
 #include "stm32f4xx_hal_can.h"
-
 #endif /* HAL_CAN_MODULE_ENABLED */
 
 #ifdef HAL_CAN_LEGACY_MODULE_ENABLED
@@ -346,7 +340,6 @@ extern "C" {
 #ifdef HAL_FLASH_MODULE_ENABLED
 
 #include "stm32f4xx_hal_flash.h"
-
 #endif /* HAL_FLASH_MODULE_ENABLED */
 
 #ifdef HAL_SRAM_MODULE_ENABLED
@@ -396,7 +389,6 @@ extern "C" {
 #ifdef HAL_PWR_MODULE_ENABLED
 
 #include "stm32f4xx_hal_pwr.h"
-
 #endif /* HAL_PWR_MODULE_ENABLED */
 
 #ifdef HAL_RNG_MODULE_ENABLED
@@ -422,7 +414,6 @@ extern "C" {
 #ifdef HAL_TIM_MODULE_ENABLED
 
 #include "stm32f4xx_hal_tim.h"
-
 #endif /* HAL_TIM_MODULE_ENABLED */
 
 #ifdef HAL_UART_MODULE_ENABLED
@@ -499,7 +490,7 @@ extern "C" {
   *         If expr is true, it returns no value.
   * @retval None
   */
-#define assert_param(expr) ((expr) ? (void)0U : assert_failed((uint8_t *)__FILE__, __LINE__))
+  #define assert_param(expr) ((expr) ? (void)0U : assert_failed((uint8_t *)__FILE__, __LINE__))
 /* Exported functions ------------------------------------------------------- */
   void assert_failed(uint8_t* file, uint32_t line);
 #else

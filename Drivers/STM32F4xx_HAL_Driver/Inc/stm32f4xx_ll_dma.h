@@ -1705,7 +1705,7 @@ __STATIC_INLINE uint32_t LL_DMA_IsActiveFlag_HT6(DMA_TypeDef *DMAx) {
   */
 __STATIC_INLINE uint32_t LL_DMA_IsActiveFlag_HT7(DMA_TypeDef *DMAx) {
     return (READ_BIT(DMAx->HISR, DMA_HISR_HTIF7) == (DMA_HISR_HTIF7));
-}
+} 
 
 /**
   * @brief Get Stream 0 transfer complete flag.
@@ -1785,7 +1785,7 @@ __STATIC_INLINE uint32_t LL_DMA_IsActiveFlag_TC6(DMA_TypeDef *DMAx) {
   */
 __STATIC_INLINE uint32_t LL_DMA_IsActiveFlag_TC7(DMA_TypeDef *DMAx) {
     return (READ_BIT(DMAx->HISR, DMA_HISR_TCIF7) == (DMA_HISR_TCIF7));
-}
+} 
 
 /**
   * @brief Get Stream 0 transfer error flag.
@@ -1865,7 +1865,7 @@ __STATIC_INLINE uint32_t LL_DMA_IsActiveFlag_TE6(DMA_TypeDef *DMAx) {
   */
 __STATIC_INLINE uint32_t LL_DMA_IsActiveFlag_TE7(DMA_TypeDef *DMAx) {
     return (READ_BIT(DMAx->HISR, DMA_HISR_TEIF7) == (DMA_HISR_TEIF7));
-}
+} 
 
 /**
   * @brief Get Stream 0 direct mode error flag.

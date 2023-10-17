@@ -2249,9 +2249,9 @@ __STATIC_INLINE void SCB_EnableDCache(void) {
       do {
         SCB->DCISW = (((sets << SCB_DCISW_SET_Pos) & SCB_DCISW_SET_Msk) |
                       ((ways << SCB_DCISW_WAY_Pos) & SCB_DCISW_WAY_Msk)  );
-#if defined ( __CC_ARM )
+        #if defined ( __CC_ARM )
           __schedule_barrier();
-#endif
+        #endif
       } while (ways-- != 0U);
     } while(sets-- != 0U);
     __DSB();
@@ -2289,9 +2289,9 @@ __STATIC_INLINE void SCB_DisableDCache(void) {
       do {
         SCB->DCCISW = (((sets << SCB_DCCISW_SET_Pos) & SCB_DCCISW_SET_Msk) |
                        ((ways << SCB_DCCISW_WAY_Pos) & SCB_DCCISW_WAY_Msk)  );
-#if defined ( __CC_ARM )
+        #if defined ( __CC_ARM )
           __schedule_barrier();
-#endif
+        #endif
       } while (ways-- != 0U);
     } while(sets-- != 0U);
 
@@ -2323,9 +2323,9 @@ __STATIC_INLINE void SCB_InvalidateDCache(void) {
       do {
         SCB->DCISW = (((sets << SCB_DCISW_SET_Pos) & SCB_DCISW_SET_Msk) |
                       ((ways << SCB_DCISW_WAY_Pos) & SCB_DCISW_WAY_Msk)  );
-#if defined ( __CC_ARM )
+        #if defined ( __CC_ARM )
           __schedule_barrier();
-#endif
+        #endif
       } while (ways-- != 0U);
     } while(sets-- != 0U);
 
@@ -2357,9 +2357,9 @@ __STATIC_INLINE void SCB_CleanDCache(void) {
       do {
         SCB->DCCSW = (((sets << SCB_DCCSW_SET_Pos) & SCB_DCCSW_SET_Msk) |
                       ((ways << SCB_DCCSW_WAY_Pos) & SCB_DCCSW_WAY_Msk)  );
-#if defined ( __CC_ARM )
+        #if defined ( __CC_ARM )
           __schedule_barrier();
-#endif
+        #endif
       } while (ways-- != 0U);
     } while(sets-- != 0U);
 
@@ -2391,9 +2391,9 @@ __STATIC_INLINE void SCB_CleanInvalidateDCache(void) {
       do {
         SCB->DCCISW = (((sets << SCB_DCCISW_SET_Pos) & SCB_DCCISW_SET_Msk) |
                        ((ways << SCB_DCCISW_WAY_Pos) & SCB_DCCISW_WAY_Msk)  );
-#if defined ( __CC_ARM )
+        #if defined ( __CC_ARM )
           __schedule_barrier();
-#endif
+        #endif
       } while (ways-- != 0U);
     } while(sets-- != 0U);
 

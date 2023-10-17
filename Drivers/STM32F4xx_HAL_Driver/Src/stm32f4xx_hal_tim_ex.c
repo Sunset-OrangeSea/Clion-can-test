@@ -97,9 +97,7 @@
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 static void TIM_DMADelayPulseNCplt(DMA_HandleTypeDef *hdma);
-
 static void TIM_DMAErrorCCxN(DMA_HandleTypeDef *hdma);
-
 static void TIM_CCxNChannelCmd(TIM_TypeDef *TIMx, uint32_t Channel, uint32_t ChannelNState);
 
 /* Exported functions --------------------------------------------------------*/
