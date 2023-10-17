@@ -92,7 +92,12 @@ int main(void) {
     MX_CAN1_Init();
     MX_TIM8_Init();
     /* USER CODE BEGIN 2 */
-    HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
+    HAL_TIM_Base_Start_IT(&htim8);
+//    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_6);
+    HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);/*��ʼ��ͨ��1*/
+    HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_4);
     /* USER CODE END 2 */
 
     /* Infinite loop */
@@ -102,11 +107,11 @@ int main(void) {
 
         /* USER CODE BEGIN 3 */
 
-        int dt1 = 500;/* 定义延时变量dt1=1000ms */
+        int dt1 = 1000;/* dt1=1000ms */
 
-        __HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 500);/*初始位置 0 */
+                __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 500);/* 0 */
         HAL_Delay(dt1);
-        __HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 2500);/*最终位置 180 */
+                __HAL_TIM_SetCompare(&htim8, TIM_CHANNEL_1, 2500);/* 180 */
         HAL_Delay(dt1);
 
 //        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
@@ -297,13 +302,13 @@ static void MX_GPIO_Init(void) {
     __HAL_RCC_GPIOB_CLK_ENABLE();
 
     /*Configure GPIO pin Output Level */
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13 | GPIO_PIN_14, GPIO_PIN_SET);
 
     /*Configure GPIO pin Output Level */
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
 
-    /*Configure GPIO pins : PC13 PC0 */
-    GPIO_InitStruct.Pin = GPIO_PIN_13 | GPIO_PIN_0;
+    /*Configure GPIO pins : PC13 PC14 PC0 */
+    GPIO_InitStruct.Pin = GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_0;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
