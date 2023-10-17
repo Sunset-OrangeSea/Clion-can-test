@@ -112,6 +112,10 @@ int main(void) {
         HAL_Delay(200);
         HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
         HAL_Delay(200);
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_RESET);
+        HAL_Delay(200);
+        HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0, GPIO_PIN_SET);
+        HAL_Delay(200);
     }
     /* USER CODE END 3 */
 }
