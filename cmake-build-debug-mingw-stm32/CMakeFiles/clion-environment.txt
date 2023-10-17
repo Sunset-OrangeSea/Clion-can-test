@@ -1,0 +1,4 @@
+ToolSet: w64 10.0 (local)@D:\MinGW\w64devkit
+Options: 
+
+Options:
