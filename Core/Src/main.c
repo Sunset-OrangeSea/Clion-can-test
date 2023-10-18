@@ -110,8 +110,8 @@ int main(void) {
     float F_angle_list[] = {-360, -360, -360};
     while (1) {
         /* USER CODE END WHILE */
-        set_angles(id_list, angle_list, 30, 60, 1, 3);  //多个电机角度控制函数
-        positions_done(id_list, 3); //多个电机等待函数
+//        set_angles(id_list,angle_list,30,60,1,3);  //多个电机角度控制函数
+//        positions_done(id_list,3); //多个电机等待函数
         // //用实时状态读取接口函数get_state实现position_done功能
         // for(int i=0;i<3;i++)
         // {
@@ -122,8 +122,8 @@ int main(void) {
         //         get_state(id_num);  //采用实时状态快速读取接口函数
         //     }
         // }
-        set_angles(id_list, F_angle_list, 30, 60, 1, 3);  //多个电机角度控制函数
-        positions_done(id_list, 3); //多个电机等待函数
+//        set_angles(id_list,F_angle_list,30,60,1,3);  //多个电机角度控制函数
+//        positions_done(id_list,3); //多个电机等待函数
         // //用实时状态读取接口函数get_state实现position_done功能
         // for(int i=0;i<3;i++)
         // {
@@ -135,7 +135,10 @@ int main(void) {
         //     }
         // }
         /* USER CODE BEGIN 3 */
-
+        set_angles(id_list, angle_list, 30, 60, 1, 3);  //多个电机角度控制函数
+        positions_done(id_list, 3); //多个电机等待函数
+        set_angles(id_list, F_angle_list, 30, 60, 1, 3);  //多个电机角度控制函数
+        positions_done(id_list, 3); //多个电机等待函数
         int dt1 = 700;/* dt1=1000ms */
 
 //        吵死人，注释掉了

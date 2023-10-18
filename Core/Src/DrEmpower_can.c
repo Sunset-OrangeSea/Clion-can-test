@@ -31,7 +31,7 @@
 
 #define SERVO_MALLOC(size) malloc(size) /* 如果使用了操作系统，需要将这个函数换成操作系统对应的函数 */
 #define SERVO_FREE(ptr) free(ptr)       /* 如果使用了操作系统，需要将这个函数换成操作系统对应的函数 */
-#define SERVO_DELAY(n) HAL_Delay(n)     /* 如果使用了操作系统，需要将这个函数换成操作系统对应的函数 */
+#define SERVO_DELAY(n) HAL_Delay(n)     /* 如果使用了操 作系统，需要将这个函数换成操作系统对应的函数 */
 #define SERVO_SPRINTF sprintf           /* 使用这个函数需要在 Keil 里勾选 Use MicroLIB 或在 STM32CubeIDE 里勾选 Use float with printf from newlib-nano */
 //#define PRE_READ() __HAL_UART_FLUSH_DRREGISTER(&SERVO_USART)
 
