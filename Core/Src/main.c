@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "DrEmpower_can.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,6 +34,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+extern uint8_t rx_buffer[8];
+extern int8_t READ_FLAG;
+extern float motor_state[1][5];
 
 /* USER CODE END PD */
 
@@ -89,19 +92,48 @@ int main(void) {
     MX_CAN1_Init();
     MX_TIM8_Init();
     /* USER CODE BEGIN 2 */
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13 | GPIO_PIN_14, GPIO_PIN_SET);
     HAL_TIM_Base_Start_IT(&htim8);
 //    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_6);
     HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);/*初始化通道1*/
     HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_3);
     HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_4);
+    Can_Config(); //Can配置信息
+    HAL_CAN_ActivateNotification(&SERVO_CAN, CAN_IT_RX_FIFO0_MSG_PENDING);//使能中断
     /* USER CODE END 2 */
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
+    uint8_t id_list[] = {1, 2, 3};  //三个电机的ID号
+    float angle_list[] = {360, 360, 360}; //三个电机的正转角度
+    float F_angle_list[] = {-360, -360, -360};
     while (1) {
         /* USER CODE END WHILE */
-
+        set_angles(id_list, angle_list, 30, 60, 1, 3);  //多个电机角度控制函数
+        positions_done(id_list, 3); //多个电机等待函数
+        // //用实时状态读取接口函数get_state实现position_done功能
+        // for(int i=0;i<3;i++)
+        // {
+        //     uint8_t id_num = id_list[i];
+        //     motor_state[id_num-1][3] = 0;
+        //     while(motor_state[id_num-1][3]!=1)
+        //     {
+        //         get_state(id_num);  //采用实时状态快速读取接口函数
+        //     }
+        // }
+        set_angles(id_list, F_angle_list, 30, 60, 1, 3);  //多个电机角度控制函数
+        positions_done(id_list, 3); //多个电机等待函数
+        // //用实时状态读取接口函数get_state实现position_done功能
+        // for(int i=0;i<3;i++)
+        // {
+        //     uint8_t id_num = id_list[i];
+        //     motor_state[id_num-1][3] = 0;
+        //     while(motor_state[id_num-1][3]!=1)
+        //     {
+        //         get_state(id_num);  //采用实时状态快速读取接口函数
+        //     }
+        // }
         /* USER CODE BEGIN 3 */
 
         int dt1 = 700;/* dt1=1000ms */

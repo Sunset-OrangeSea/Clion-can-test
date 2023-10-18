@@ -41,7 +41,13 @@ extern CAN_HandleTypeDef hcan1;
 void MX_CAN1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+void Can_Config(void);
 
+#define SERVO_CAN hcan1
+
+uint8_t Can_Send_Msg(uint32_t id, uint8_t len, uint8_t *data);
+
+void HAL_CAN_RxCpltCallback(CAN_HandleTypeDef *SERVO_CAN);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

@@ -21,7 +21,9 @@
 #include "can.h"
 
 /* USER CODE BEGIN 0 */
-
+extern uint8_t rx_buffer[8];
+extern int8_t READ_FLAG;
+extern uint16_t can_id;
 /* USER CODE END 0 */
 
 CAN_HandleTypeDef hcan1;
@@ -112,5 +114,60 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef *canHandle) {
 }
 
 /* USER CODE BEGIN 1 */
+void Can_Config(void) {
+    CAN_FilterTypeDef CAN_FilterType;
+    CAN_FilterType.FilterBank = 0;
+    CAN_FilterType.FilterIdHigh = 0x0000;
+    CAN_FilterType.FilterIdLow = 0x0000;
+    CAN_FilterType.FilterMaskIdHigh = 0x0000;
+    CAN_FilterType.FilterMaskIdLow = 0x0000;
+    CAN_FilterType.FilterFIFOAssignment = CAN_RX_FIFO0;
+    CAN_FilterType.FilterMode = CAN_FILTERMODE_IDMASK;
+    CAN_FilterType.FilterScale = CAN_FILTERSCALE_32BIT;
+    CAN_FilterType.FilterActivation = ENABLE;
+    CAN_FilterType.SlaveStartFilterBank = 14;
+    if (HAL_CAN_ConfigFilter(&SERVO_CAN, &CAN_FilterType) != HAL_OK) {
+        Error_Handler();
+    }
+    if (HAL_CAN_ActivateNotification(&SERVO_CAN, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK) {
+        Error_Handler();
+    }
+    if (HAL_CAN_Start(&SERVO_CAN) != HAL_OK) {
+        Error_Handler();
+    }
+}
 
+uint8_t Can_Send_Msg(uint32_t id, uint8_t len, uint8_t *data) {
+    uint32_t i = 0;
+    static uint32_t TxMailbox;
+    CAN_TxHeaderTypeDef CAN_TxHeader;
+    HAL_StatusTypeDef HAL_RetVal;
+    CAN_TxHeader.IDE = CAN_ID_STD;
+    CAN_TxHeader.StdId = id;
+    CAN_TxHeader.DLC = len;
+    CAN_TxHeader.RTR = CAN_RTR_DATA;
+    CAN_TxHeader.TransmitGlobalTime = DISABLE;
+
+
+    while (HAL_CAN_GetTxMailboxesFreeLevel(&SERVO_CAN) == 0) {
+        i++;
+        if (i > 0xffffe)
+            return 1;
+    }
+
+    HAL_RetVal = HAL_CAN_AddTxMessage(&SERVO_CAN, &CAN_TxHeader, data, &TxMailbox);
+
+    if (HAL_RetVal != HAL_OK)
+        return 1;
+    return 0;
+}
+
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *SERVO_CAN) {
+    CAN_RxHeaderTypeDef hCAN1_RxHeader;
+
+    if (HAL_CAN_GetRxMessage(SERVO_CAN, CAN_RX_FIFO0, &hCAN1_RxHeader, rx_buffer) == HAL_OK) {
+        can_id = hCAN1_RxHeader.StdId;
+        READ_FLAG = 1;
+    }
+}
 /* USER CODE END 1 */
