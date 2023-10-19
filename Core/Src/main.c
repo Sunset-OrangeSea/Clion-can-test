@@ -99,13 +99,9 @@ int main(void) {
     HAL_Delay(3000);
 //    DM_Motor_SaveZore(&m4310_02);
 //    HAL_Delay(100);
-    HAL_Delay(1);
     DM_Motor_Enable(&m4310_01);
-    HAL_Delay(1);
     DM_Motor_Enable(&m4310_02);
-    HAL_Delay(1);
     DM_Motor_Enable(&m4310_03);
-    HAL_Delay(1);
 
 //    HAL_TIM_Base_Start_IT(&htim8);
 //    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_6);
@@ -125,13 +121,11 @@ int main(void) {
         /* USER CODE BEGIN 3 */
         DM_Motor_MitCtrl(&m4310_01, 0, 5, 0, 0, 1);
         DM_Motor_MitCtrl(&m4310_02, 0, 3, 0, 0, 1);
-        DM_Motor_MitCtrl(&m4310_03, 0, 1, 0, 0, 1);
-        HAL_Delay(1000);
+        DM_Motor_MitCtrl(&m4310_03, 0, 6, 0, 0, 1);
+        HAL_Delay(300);
         DM_Motor_MitCtrl(&m4310_01, 0, -5, 0, 0, 1);
         DM_Motor_MitCtrl(&m4310_02, 0, -3, 0, 0, 1);
-        DM_Motor_MitCtrl(&m4310_03, 0, -1, 0, 0, 1);
-        HAL_Delay(1000);
-        DM_Motor_Disable(&m4310_01);
+        DM_Motor_MitCtrl(&m4310_03, 0, -6, 0, 0, 1);
 
 
 //        int dt1 = 1000;/* dt1=1000ms */

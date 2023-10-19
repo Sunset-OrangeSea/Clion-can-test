@@ -57,7 +57,6 @@ void MX_CAN1_Init(void) {
     /* USER CODE END CAN1_Init 2 */
 
 }
-
 /* CAN2 init function */
 void MX_CAN2_Init(void) {
 
@@ -77,7 +76,7 @@ void MX_CAN2_Init(void) {
     hcan2.Init.TimeTriggeredMode = DISABLE;
     hcan2.Init.AutoBusOff = DISABLE;
     hcan2.Init.AutoWakeUp = DISABLE;
-    hcan2.Init.AutoRetransmission = DISABLE;
+    hcan2.Init.AutoRetransmission = ENABLE;
     hcan2.Init.ReceiveFifoLocked = DISABLE;
     hcan2.Init.TransmitFifoPriority = DISABLE;
     if (HAL_CAN_Init(&hcan2) != HAL_OK) {
